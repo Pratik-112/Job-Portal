@@ -1,0 +1,27 @@
+## About Transpiling ->
+## What is Transpiling?
+# Transpiling is the process of converting source code from one version of a programming language to another while keeping the same functionality. In the case of React and JavaScript, transpiling is commonly used to convert modern ES6+ (ECMAScript 2015 and later) code into older ES5 code, which is supported by most browsers.
+
+## Why is Transpiling Needed?
+# Not all browsers support the latest JavaScript features (like optional chaining, async/await, JSX, etc.). Transpiling ensures that your code runs smoothly in all environments.
+
+## Transpilers in React ->
+# Babel (Commonly used, but slower)
+# SWC (Speedy Web Compiler) (Faster alternative to Babel, written in Rust). SWC (Speedy Web Compiler) is a fast Rust-based compiler that replaces Babel for transpiling JavaScript/TypeScript code.
+# esbuild (Another fast transpiler)
+
+
+## Supabase ->
+# Supabase is an open-source backend-as-a-service (BaaS) that provides developers with a PostgreSQL database, authentication, real-time subscriptions, and storage, all in one platform. It aims to be a free and open-source alternative to Firebase. It is based on SQL. It uses SQL as query language and PostgreSQL(SQL database type)
+
+## Firebase ->
+# It uses Nosql database.
+# It uses firestore queries(Nosql queries).
+
+## Clerk ->
+# Clerk is a User Authentication and User Management service for web applications. It provides authentication, authorization, and user profile management in React, Next.js, and other JavaScript frameworks
+
+## JWT ->
+# JWT stands for JSON web Tokens
+# JWTs are commonly used for authentication and authorization in web applications.
+# They are used for securely transmitting information between parties as a JSON object.
