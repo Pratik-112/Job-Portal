@@ -4,14 +4,42 @@ import { CardHeader, CardTitle, CardFooter } from "./ui/card";
 import { Heart, MapPinIcon, Trash2Icon } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "./ui/button";
+import { saveJob } from "@/api/apiJobs";
+import { useState, useEffect } from "react";
+import useFetch from "@/hooks/use-fetch";
+
 const JobCard = ({
   job,
   savedInit = false,
   isMyJob = false,
   onJobSaved = () => {},
-  onJob,
+  
 }) => {
-  const { user } = useUser();
+  
+  const[saved, setSaved] = useState(savedInit);
+
+  const { fn:fnSavedJob ,data:savedJob, loading:loadingSavedJob} = useFetch(saveJob, {alreadySaved: saved});
+
+  const{user} = useUser();
+
+  const handleSaveJob = async () => {
+    await fnSavedJob({
+      user_id:user.id,
+      job_id:job.id,
+      
+    });
+    onJobSaved();   // after saving job, we are going to take some action(like actually seeing the whislist, we will work on it later)
+  };
+
+  useEffect(()=>{
+    if(savedJob !== undefined){
+      
+      setSaved(savedJob?.length>0);
+    }
+  }, [savedJob])
+
+  
+
 
   return (
     <Card className ="rounded-sm " >
@@ -49,7 +77,21 @@ const JobCard = ({
             </Button>
         </Link>
 
-        <Heart size = {20} stroke="red" fill = "red"></Heart>
+        {
+          !isMyJob &&(
+            <Button
+              variant = "outline"
+              className = "w-15 cursor-pointer"
+              onClick = {handleSaveJob}
+              disabled = {loadingSavedJob}
+            >
+              {saved?(
+                <Heart  size ={24} stroke = "red" fill = "red"></Heart>):
+                <Heart  size = {24} ></Heart>
+              }
+            </Button>
+          )
+        }
       </CardFooter>
     </Card>
   );

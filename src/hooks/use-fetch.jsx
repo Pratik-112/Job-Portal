@@ -11,7 +11,7 @@ const useFetch = (cb, options = {}) =>{
     const [error, setError] = useState(null);
     const {session} = useSession();
 
-    useEffect(()=>{
+    
         const fn = async(...args)=>{
             setLoading(true);
             setError(null);
@@ -36,13 +36,12 @@ const useFetch = (cb, options = {}) =>{
         }
 
 
-        fn();
-    }, [session, options.location, options.company_id, options.searchQuery])
+    
 
+    return { fn, loading, error, data};
 
     
 
-    return { loading, error, data};
 };
 
 export default useFetch;
