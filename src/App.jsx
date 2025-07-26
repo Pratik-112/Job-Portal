@@ -1,6 +1,3 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
 import { Button } from "./components/ui/button";
 import AppLayout from "@/layout/app-layout"; // absolute import
@@ -16,7 +13,6 @@ import JobPage from "@/pages/job.jsx"
 import { ThemeProvider } from "@/components/theme-provider";
 import ProtectedRoute from "./components/protected-route";
 function App() {
-  const [count, setCount] = useState(0);
 
   const router = createBrowserRouter([
     {
