@@ -6,12 +6,21 @@ import { useNavigate } from "react-router-dom";
 const OnBoarding = ()=>{
 
     const {user, isLoaded} = useUser();
+    const navigate = useNavigate();
+    
     console.log(user);
+    
+    useEffect(()=>{      // useEffect runs atleast one time. And it runs always for once when component is rendered.
+        if( isLoaded && user?.unsafeMetadata?.role){
+            navigate(
+                user?.unsafeMetadata?.role === "Recruiter"? "/post-job" : "/jobs"
+            )
+        }
+    },[user, isLoaded, navigate])
+
     if(!isLoaded){     // understood a lot of things
         return <BarLoader className="mb-4" width={"100%"} color="#36d7b7" />
-    }   
-
-    const navigate = useNavigate();
+    }
 
     const handleRoleSelection = async(role)=>{
         await user.update({
@@ -24,15 +33,6 @@ const OnBoarding = ()=>{
             console.log("Error updating role:", err );
         })
     }
-
-    useEffect(()=>{      // understood a lot of things   // useEffect runs atleast one time. And it runs always for once when component is rendered.
-        if( isLoaded && user?.unsafeMetadata?.role){
-            navigate(
-                user?.unsafeMetadata?.role === "Recruiter"? "/post-job" : "/jobs"
-            )
-        }
-    },[user, isLoaded])
-
 
     return(
         <div className = "flex justify-center flex-col mt-10 mb-30 items-center">

@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useState} from "react";
 import { useSession } from "@clerk/clerk-react";
 // custom hook for fetching data from jobs table.
 
